@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { CSSTransitionGroup } from 'react-transition-group';
+import {TransitionGroup, Transition} from 'react-transition-group';
 import './App.css';
 
 function Nav(props) {
@@ -28,8 +29,8 @@ class TabbedContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      left: false,
-      right: true
+      left: true,
+      right: false
     };
   }
 
@@ -48,15 +49,16 @@ class TabbedContainer extends Component {
   }
 
   render() {
+    const children = this.props.render(this.state.left, this.state.right);
     return (
-      <div className="tabbed-container">
+      <div className={'tabbed-name ' + this.props.className}>
         <div className="tabs">
           <Button className="left" selected={this.state.left} select={this.leftTab.bind(this)}></Button>
           <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
         </div>
-        <div className="card-container">
-          {this.props.render(this.state.left, this.state.right)}
-        </div>
+        <TransitionGroup className="card-container">
+          {children.map(child => <Transition>{child}</Transition>)}
+        </TransitionGroup>
       </div>
     );
   }
@@ -88,27 +90,13 @@ function CardTwo(props) {
 class App extends Component {
   render() {
     return (
-      <div className="example tab-slide">
-        <TabbedContainer render={(left, right) => {
-            if (left) {
-              return (
-                <div>
-                  <CardOne></CardOne>
-                  <CardOne></CardOne>
-                </div>
-              );
-            } else {
-              return (
-                <div>
-                  <CardTwo></CardTwo>
-                  <CardTwo></CardTwo>
-                  <CardTwo></CardTwo>
-                </div>
-              );
-            }
-        }}>
-        </TabbedContainer>
-      </div>
+      <TabbedContainer className="example tab-slide" render={(left, right) => {
+          if (left) {
+            return [<CardOne></CardOne>, <CardOne></CardOne>];
+          } else {
+            return [<CardTwo></CardTwo>, <CardTwo></CardTwo>, <CardTwo></CardTwo>];
+          }
+      }}/>
     );
   }
 }
