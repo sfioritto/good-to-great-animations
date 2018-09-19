@@ -23,7 +23,7 @@ function Button(props) {
   );
 }
 
-class Tabs extends Component {
+class TabbedContainer extends Component {
 
   constructor(props) {
     super(props);
@@ -34,7 +34,6 @@ class Tabs extends Component {
   }
 
   leftTab() {
-    console.log('left');
     this.setState({
       left: true,
       right: false
@@ -42,18 +41,22 @@ class Tabs extends Component {
   }
 
   rightTab() {
-    console.log('right');
     this.setState({
       left: false,
       right: true
     });
   }
 
-  render(props) {
+  render() {
     return (
-      <div className="tabs">
-        <Button className="left" selected={this.state.left} select={this.leftTab.bind(this)}></Button>
-        <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
+      <div className="tabbed-container">
+        <div className="tabs">
+          <Button className="left" selected={this.state.left} select={this.leftTab.bind(this)}></Button>
+          <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
+        </div>
+        <div className="card-container">
+          {this.props.render(this.state.left, this.state.right)}
+        </div>
       </div>
     );
   }
@@ -75,10 +78,19 @@ class App extends Component {
   render() {
     return (
       <div className="example tab-slide">
-        <Tabs>
-        </Tabs>
-        <CardOne></CardOne>
-        <CardOne></CardOne>
+        <TabbedContainer render={(left, right) => {
+            if (left) {
+              return (
+                <div>
+                  <CardOne></CardOne>
+                  <CardOne></CardOne>
+                </div>
+              );
+            } else {
+              return <p>boom</p>;
+            }
+        }}>
+        </TabbedContainer>
       </div>
     );
   }
