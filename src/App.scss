@@ -1,0 +1,86 @@
+$black: rgb(15, 15, 15);
+$blue: rgb(76, 165, 252);
+$grey: rgb(220, 220, 220);
+$light-blue: rgb(135, 195, 252);
+
+$example-width: 14rem;
+
+*, *::before, *::after {
+}
+
+.example {
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px $black;
+  margin: 2rem auto 0 auto;
+  max-height: 25rem;
+  padding: 1rem;
+  overflow: auto;
+  width: $example-width;
+}
+
+.card {
+  border-radius: 5px;
+  box-shadow: 0 0 5px $grey;
+  margin: 0 auto 1rem auto;
+}
+
+.card-one {
+  .top {
+    background: $blue;
+    border-radius: 5px 5px 0 0;
+    height: 8rem;
+  }
+
+  .bottom {
+    padding: 1rem;
+  }
+
+  .title {
+    background-color: $blue;
+    border-radius: 10px;
+    margin: 1rem 0;
+    height: 1.5rem;
+    width: 66%;
+  }
+
+  .sub-title {
+    background-color: $light-blue;
+    border-radius: 10px;
+    height: 1rem;
+    margin: 1rem 0;
+    width: 33%;
+  }
+}
+
+.tabs {
+
+  display: flex;
+  margin-bottom: 1rem;
+
+  .left,
+  .right {
+
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    width: 50%;
+
+    &.selected {
+      border-bottom: 3px solid $blue;
+      .button {
+        background-color: $blue;
+      }
+    }
+
+    .button {
+      background-color: $grey;
+      border-radius: 10px;
+      height: 1rem;
+      width: ($example-width - 4rem) / 2
+    }
+  }
+}
+
+.tab-slide {
+
+}
