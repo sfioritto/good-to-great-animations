@@ -2,6 +2,7 @@ $black: rgb(15, 15, 15);
 $blue: rgb(76, 165, 252);
 $grey: rgb(220, 220, 220);
 $light-blue: rgb(135, 195, 252);
+$white: rgb(250, 250, 250);
 
 $example-width: 14rem;
 
@@ -45,6 +46,29 @@ $example-width: 14rem;
 
   .sub-title {
     background-color: $light-blue;
+    border-radius: 10px;
+    height: 1rem;
+    margin: 1rem 0;
+    width: 33%;
+  }
+}
+
+.card-two {
+  background-color: $blue;
+  border-radius: 10px;
+  padding: 1rem;
+  height: 7rem;
+
+  .title {
+    background-color: $white;
+    border-radius: 10px;
+    margin: 1rem 0;
+    height: 1.5rem;
+    width: 66%;
+  }
+
+  .sub-title {
+    background-color: $grey;
     border-radius: 10px;
     height: 1rem;
     margin: 1rem 0;

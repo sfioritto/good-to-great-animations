@@ -34,6 +34,24 @@
   margin: 1rem 0;
   width: 33%; }
 
+.card-two {
+  background-color: #4ca5fc;
+  border-radius: 10px;
+  padding: 1rem;
+  height: 7rem; }
+  .card-two .title {
+    background-color: #fafafa;
+    border-radius: 10px;
+    margin: 1rem 0;
+    height: 1.5rem;
+    width: 66%; }
+  .card-two .sub-title {
+    background-color: gainsboro;
+    border-radius: 10px;
+    height: 1rem;
+    margin: 1rem 0;
+    width: 33%; }
+
 .tabs {
   display: flex;
   margin-bottom: 1rem; }

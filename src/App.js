@@ -28,8 +28,8 @@ class TabbedContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      left: true,
-      right: false
+      left: false,
+      right: true
     };
   }
 
@@ -74,6 +74,17 @@ function CardOne(props) {
   );
 }
 
+function CardTwo(props) {
+  return (
+    <div className="card card-two">
+      <div className="top">
+        <div className="title"></div>
+        <div className="sub-title"></div>
+      </div>
+    </div>
+  );
+}
+
 class App extends Component {
   render() {
     return (
@@ -87,7 +98,13 @@ class App extends Component {
                 </div>
               );
             } else {
-              return <p>boom</p>;
+              return (
+                <div>
+                  <CardTwo></CardTwo>
+                  <CardTwo></CardTwo>
+                  <CardTwo></CardTwo>
+                </div>
+              );
             }
         }}>
         </TabbedContainer>
