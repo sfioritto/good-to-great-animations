@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
-import {TransitionGroup, Transition} from 'react-transition-group';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import './App.css';
 
 function Nav(props) {
@@ -57,7 +56,7 @@ class TabbedContainer extends Component {
           <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
         </div>
         <TransitionGroup className="card-container">
-          {children.map(child => <Transition>{child}</Transition>)}
+          {children}
         </TransitionGroup>
       </div>
     );
@@ -91,11 +90,23 @@ class App extends Component {
   render() {
     return (
       <TabbedContainer className="example tab-slide" render={(left, right) => {
-          if (left) {
-            return [<CardOne></CardOne>, <CardOne></CardOne>];
-          } else {
-            return [<CardTwo></CardTwo>, <CardTwo></CardTwo>, <CardTwo></CardTwo>];
-          }
+          const timeout = 200;
+        if (left) {
+          return [1, 2].map(
+            key => (
+              <CSSTransition key={key} in={true} classNames="cards-left" timeout={timeout} component={null}>
+                <CardOne></CardOne>
+              </CSSTransition>
+            )
+          );
+        } else {
+          return [3, 4, 5].map(
+            key => (
+              <CSSTransition key={key} in={true} classNames="cards-right" timeout={timeout} component={null}>
+                <CardTwo></CardTwo>
+              </CSSTransition>)
+          );
+        }
       }}/>
     );
   }
