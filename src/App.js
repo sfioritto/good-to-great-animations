@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 import './App.css';
 
 function Nav(props) {
@@ -20,6 +20,20 @@ function Button(props) {
     <div className={selected} >
       <div className="button" onClick={props.select}></div>
     </div>
+  );
+}
+
+function CardContainer(props) {
+  return (
+    <CSSTransition in={props.show}
+                   className="card-container"
+                   classNames={`card-container-${props.side}`}
+                   timeout={3000}
+                   component={"div"}>
+      <div className={props.side}>
+        {props.cards}
+      </div>
+    </CSSTransition>
   );
 }
 
@@ -48,16 +62,16 @@ class TabbedContainer extends Component {
   }
 
   render() {
-    const children = this.props.render(this.state.left, this.state.right);
+    const cards = this.props.render(this.state.left, this.state.right);
+    const side = this.state.left ? "left" : "right";
+
     return (
       <div className={'tabbed-name ' + this.props.className}>
         <div className="tabs">
           <Button className="left" selected={this.state.left} select={this.leftTab.bind(this)}></Button>
           <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
         </div>
-        <TransitionGroup className="card-container">
-          {children}
-        </TransitionGroup>
+        <CardContainer cards={cards} side={side} show={true}/>
       </div>
     );
   }
@@ -92,20 +106,9 @@ class App extends Component {
       <TabbedContainer className="example tab-slide" render={(left, right) => {
           const timeout = 200;
         if (left) {
-          return [1, 2].map(
-            key => (
-              <CSSTransition key={key} in={true} classNames="cards-left" timeout={timeout} component={null}>
-                <CardOne></CardOne>
-              </CSSTransition>
-            )
-          );
+          return [1, 2].map(key => <CardOne key={key}></CardOne>);
         } else {
-          return [3, 4, 5].map(
-            key => (
-              <CSSTransition key={key} in={true} classNames="cards-right" timeout={timeout} component={null}>
-                <CardTwo></CardTwo>
-              </CSSTransition>)
-          );
+          return [3, 4, 5].map(key => <CardTwo key={key}></CardTwo>);
         }
       }}/>
     );
