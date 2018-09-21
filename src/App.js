@@ -12,6 +12,15 @@ function Nav(props) {
   );
 }
 
+function Container(props) {
+  return (
+    <div className="container">
+      <Nav/>
+      {props.children}
+    </div>
+  );
+}
+
 function Button(props) {
   const className = props.className || "";
   const selected = className + " " + (props.selected ? 'selected' : '');
@@ -86,7 +95,8 @@ class TabbedContainer extends Component {
 
 function CardOne(props) {
   return (
-    <div className="card card-one">
+    <div className={"card card-one" + (props.className ? " " + props.className : "")}
+         onClick = {props.onClick}>
       <div className="top"></div>
       <div className="bottom">
         <div className="title"></div>
@@ -107,15 +117,48 @@ function CardTwo(props) {
   );
 }
 
+class ExpandCard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {expanded: props.expanded};
+  }
+
+  toggleExpand() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
+  }
+
+  render() {
+    const expanded = this.state.expanded ? "expanded" : "";
+    return (
+      <CardOne
+        className={`card card-one ${expanded}`}
+        onClick={this.toggleExpand.bind(this)}></CardOne>
+    );
+  }
+}
+
+/*
+<TabbedContainer className="example tab-slide" render={() => {
+            return {
+              left: [1, 2].map(key => <CardOne key={key}></CardOne>),
+              right: [3, 4, 5].map(key => <CardTwo key={key}></CardTwo>)
+            };
+        }}/>
+*/
+
 class App extends Component {
   render() {
     return (
-      <TabbedContainer className="example tab-slide" render={() => {
-          return {
-            left: [1, 2].map(key => <CardOne key={key}></CardOne>),
-            right: [3, 4, 5].map(key => <CardTwo key={key}></CardTwo>)
-          };
-      }}/>
+      <div className="examples">
+        <div className="example expand-card">
+        <Container>
+          {[1, 2, 3, 4].map(key => <ExpandCard key={key} expanded={false}></ExpandCard>)}
+        </Container>
+        </div>
+      </div>
     );
   }
 }

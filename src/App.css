@@ -3,6 +3,7 @@
   box-shadow: 2px 2px 10px #0f0f0f;
   margin: 2rem auto 0 auto;
   min-height: 25rem;
+  max-height: 20rem;
   padding: 1rem;
   overflow: auto;
   width: 14rem; }
@@ -107,8 +108,7 @@
     right: 7rem; }
 
 .card-container-wrapper {
-  position: relative;
-  max-height: 20rem; }
+  position: relative; }
 
 .card-container-right {
   display: none; }
@@ -175,3 +175,18 @@
   display: none;
   left: initial;
   position: static; }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 1rem 0; }
+  .navigation .left,
+  .navigation .middle,
+  .navigation .right {
+    border-radius: 5px;
+    height: 1rem;
+    background-color: #93ccfc; }
+  .navigation .left, .navigation .right {
+    width: 2rem; }
+  .navigation .middle {
+    width: 4rem; }
