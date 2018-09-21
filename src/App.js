@@ -26,9 +26,9 @@ function Button(props) {
 function CardContainer(props) {
   return (
     <CSSTransition in={props.show}
-                   className="card-container"
+                   className={`card-container card-container-${props.side}`}
                    classNames={`card-container-${props.side}`}
-                   timeout={3000}
+                   timeout={200}
                    component={"div"}>
       <div className={props.side}>
         {props.cards}
@@ -62,7 +62,7 @@ class TabbedContainer extends Component {
   }
 
   render() {
-    const cards = this.props.render(this.state.left, this.state.right);
+    const cards = this.props.render();
     const side = this.state.left ? "left" : "right";
 
     return (
@@ -71,7 +71,10 @@ class TabbedContainer extends Component {
           <Button className="left" selected={this.state.left} select={this.leftTab.bind(this)}></Button>
           <Button className="right" selected={this.state.right} select={this.rightTab.bind(this)}></Button>
         </div>
-        <CardContainer cards={cards} side={side} show={true}/>
+        <div className="card-container-wrapper">
+          <CardContainer cards={cards.left} side={'left'} show={this.state.left}/>
+          <CardContainer cards={cards.right} side={'right'} show={this.state.right}/>
+        </div>
       </div>
     );
   }
@@ -103,13 +106,11 @@ function CardTwo(props) {
 class App extends Component {
   render() {
     return (
-      <TabbedContainer className="example tab-slide" render={(left, right) => {
-          const timeout = 200;
-        if (left) {
-          return [1, 2].map(key => <CardOne key={key}></CardOne>);
-        } else {
-          return [3, 4, 5].map(key => <CardTwo key={key}></CardTwo>);
-        }
+      <TabbedContainer className="example tab-slide" render={() => {
+          return {
+            left: [1, 2].map(key => <CardOne key={key}></CardOne>),
+            right: [3, 4, 5].map(key => <CardTwo key={key}></CardTwo>)
+          };
       }}/>
     );
   }

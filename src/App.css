@@ -74,26 +74,72 @@
       height: 1rem;
       width: 5rem; }
 
-.cards-left-enter {
-  left: -14rem;
+.card-container-wrapper {
   position: relative;
-  transition: 200ms ease-in-out left; }
+  max-height: 20rem; }
 
-.cards-left-enter-active {
+.card-container-right {
+  display: none; }
+
+.card-container-left-enter {
+  left: -16rem;
+  position: absolute;
+  transition: 200ms ease-in-out left;
+  width: 100%; }
+
+.card-container-left-enter-active {
+  display: block;
   left: 0; }
 
-.cards-left-enter-done {
+.card-container-left-enter-done {
+  display: block;
   left: initial;
   position: static; }
 
-.cards-right-enter {
-  left: 14rem;
-  position: relative;
-  transition: 200ms ease-in-out left; }
+.card-container-right-enter {
+  display: block;
+  left: 16rem;
+  position: absolute;
+  transition: 200ms ease-in-out left;
+  top: 0;
+  width: 100%; }
 
-.cards-right-enter-active {
+.card-container-right-enter-active {
   left: 0; }
 
-.cards-right-enter-done {
+.card-container-right-enter-done {
+  display: block;
+  left: initial;
+  position: static; }
+
+.card-container-left-exit {
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: 200ms ease-in-out left;
+  width: 100%; }
+
+.card-container-left-exit-active {
+  left: -16rem; }
+
+.card-container-left-exit-done {
+  display: none;
+  left: initial;
+  position: static; }
+
+.card-container-right-exit {
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: 200ms ease-in-out left;
+  width: 100%; }
+
+.card-container-right-exit-active {
+  left: 16rem; }
+
+.card-container-right-exit-done {
+  display: none;
   left: initial;
   position: static; }
