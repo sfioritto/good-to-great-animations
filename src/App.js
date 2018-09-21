@@ -102,6 +102,12 @@ function CardOne(props) {
         <div className="title"></div>
         <div className="sub-title"></div>
       </div>
+      <div className="details">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
     </div>
   );
 }
@@ -134,7 +140,7 @@ class ExpandCard extends Component {
     const expanded = this.state.expanded ? "expanded" : "";
     return (
       <CardOne
-        className={`card card-one ${expanded}`}
+        className={expanded}
         onClick={this.toggleExpand.bind(this)}></CardOne>
     );
   }

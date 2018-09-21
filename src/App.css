@@ -35,6 +35,9 @@
   margin: 1rem 0;
   width: 33%; }
 
+.card-one .details {
+  display: none; }
+
 .card-two {
   background-color: #4ca5fc;
   border-radius: 10px;
@@ -190,3 +193,13 @@
     width: 2rem; }
   .navigation .middle {
     width: 4rem; }
+
+.card-one.expanded .details {
+  display: block;
+  padding: 0 1rem 1rem 1rem; }
+  .card-one.expanded .details p {
+    background-color: #87c3fc;
+    border-radius: 5px;
+    height: 1rem; }
+    .card-one.expanded .details p:first-of-type {
+      margin-top: 0; }

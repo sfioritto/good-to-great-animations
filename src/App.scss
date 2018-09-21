@@ -53,6 +53,10 @@ $example-width: 14rem;
     margin: 1rem 0;
     width: 33%;
   }
+
+  .details {
+    display: none;
+  }
 }
 
 .card-two {
@@ -261,5 +265,23 @@ $example-width: 14rem;
 
   .middle {
     width: 4rem;
+  }
+}
+
+.card-one.expanded {
+
+  .details {
+    display: block;
+    padding: 0 1rem 1rem 1rem;
+
+    p {
+      background-color: $light-blue;
+      border-radius: 5px;
+      height: 1rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
   }
 }
