@@ -17,9 +17,13 @@ function Button(props) {
   const selected = className + " " + (props.selected ? 'selected' : '');
 
   return (
-    <div className={selected} >
-      <div className="button" onClick={props.select}></div>
-    </div>
+    <CSSTransition in={props.selected}
+                   timeout={200}
+                   classNames={"button"}>
+      <div className={selected} >
+        <div className="button" onClick={props.select}></div>
+      </div>
+    </CSSTransition>
   );
 }
 

@@ -57,22 +57,54 @@
   margin-bottom: 1rem; }
   .tabs .left,
   .tabs .right {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     padding: 1rem 0;
     width: 50%; }
-    .tabs .left.selected,
-    .tabs .right.selected {
-      border-bottom: 3px solid #4ca5fc; }
-      .tabs .left.selected .button,
-      .tabs .right.selected .button {
-        background-color: #4ca5fc; }
     .tabs .left .button,
     .tabs .right .button {
       background-color: gainsboro;
       border-radius: 10px;
       height: 1rem;
       width: 5rem; }
+    .tabs .left.selected,
+    .tabs .right.selected {
+      position: relative; }
+      .tabs .left.selected::after,
+      .tabs .right.selected::after {
+        border-bottom: 3px solid #4ca5fc;
+        bottom: 0;
+        content: "";
+        position: absolute;
+        width: 100%; }
+      .tabs .left.selected.button-enter::after,
+      .tabs .right.selected.button-enter::after {
+        display: none; }
+      .tabs .left.selected.button-enter-done,
+      .tabs .right.selected.button-enter-done {
+        display: flex; }
+      .tabs .left.selected .button,
+      .tabs .right.selected .button {
+        background-color: #4ca5fc; }
+  .tabs .button-exit {
+    position: relative; }
+  .tabs .button-exit::after {
+    border-bottom: 3px solid #4ca5fc;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    width: 100%; }
+  .tabs .left.button-exit::after {
+    left: 0;
+    transition: 200ms ease-in-out left; }
+  .tabs .left.button-exit-active::after {
+    left: 7rem; }
+  .tabs .right.button-exit::after {
+    right: 0;
+    transition: 200ms ease-in-out right; }
+  .tabs .right.button-exit-active::after {
+    right: 7rem; }
 
 .card-container-wrapper {
   position: relative;

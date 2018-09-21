@@ -83,24 +83,75 @@ $example-width: 14rem;
 
   .left,
   .right {
-
+    cursor: pointer;
     display: flex;
     justify-content: center;
     padding: 1rem 0;
     width: 50%;
-
-    &.selected {
-      border-bottom: 3px solid $blue;
-      .button {
-        background-color: $blue;
-      }
-    }
 
     .button {
       background-color: $grey;
       border-radius: 10px;
       height: 1rem;
       width: ($example-width - 4rem) / 2
+    }
+
+    &.selected {
+
+      position: relative;
+
+      &::after {
+        border-bottom: 3px solid $blue;
+        bottom: 0;
+        content: "";
+        position: absolute;
+        width: 100%;
+      }
+
+      &.button-enter::after {
+        display: none;
+      }
+
+      &.button-enter-done {
+        display: flex;
+      }
+
+      .button {
+        background-color: $blue;
+      }
+    }
+  }
+
+  .button-exit {
+    position: relative;
+  }
+  .button-exit::after {
+    border-bottom: 3px solid $blue;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+  }
+
+
+  .left {
+    &.button-exit::after {
+      left: 0;
+      transition: 200ms ease-in-out left;
+    }
+
+    &.button-exit-active::after {
+      left: $example-width / 2;
+    }
+  }
+
+  .right {
+    &.button-exit::after {
+      right: 0;
+      transition: 200ms ease-in-out right;
+    }
+    &.button-exit-active::after {
+      right: $example-width / 2;
     }
   }
 }
