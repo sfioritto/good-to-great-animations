@@ -268,8 +268,10 @@ $example-width: 14rem;
   }
 }
 
-.card-one.expanded {
+.expandable-card.loaded {
+
   overflow: hidden;
+
   .details {
     display: block;
     padding: 0 1rem 1rem 1rem;
@@ -287,5 +289,6 @@ $example-width: 14rem;
 }
 
 .expand-card {
+  // otherwise offsetTop on cards will be relative to the larger example container
   position: relative;
 }
