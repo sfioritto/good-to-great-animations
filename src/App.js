@@ -25,7 +25,7 @@ class Container extends Component {
     this.scroll(cardElem.offsetTop);
     anime({
       targets: cardElem,
-      height: [cardHeight, cardElem.scrollHeight],
+      height: [cardHeight, this.containerRef.current.offsetHeight],
       'margin-left': [0, -16],
       'margin-right': [0, -16],
       duration: 300,
