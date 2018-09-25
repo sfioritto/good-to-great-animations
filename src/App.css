@@ -203,3 +203,6 @@
     height: 1rem; }
     .card-one.expanded .details p:first-of-type {
       margin-top: 0; }
+
+.expand-card {
+  position: relative; }

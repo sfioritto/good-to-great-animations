@@ -12,13 +12,32 @@ function Nav(props) {
   );
 }
 
-function Container(props) {
-  return (
-    <div className="container">
-      <Nav/>
-      {props.children}
-    </div>
-  );
+class Container extends Component {
+
+  constructor(props) {
+    super(props);
+    this.containerRef = React.createRef();
+  }
+
+  scroll(scrollTop) {
+    this.containerRef.current.scrollTop = scrollTop;
+  }
+
+  render() {
+
+    const children = React.Children.map(
+      this.props.children, child => {
+        return React.cloneElement(child, { scroll: this.scroll.bind(this) });
+      });
+
+    return (
+      <div className={this.props.className}
+           ref={this.containerRef}>
+        <Nav/>
+        {children}
+      </div>
+    );
+  }
 }
 
 function Button(props) {
@@ -96,7 +115,8 @@ class TabbedContainer extends Component {
 function CardOne(props) {
   return (
     <div className={"card card-one" + (props.className ? " " + props.className : "")}
-         onClick = {props.onClick}>
+         onClick = {props.onClick}
+         ref = {props.cardRef}>
       <div className="top"></div>
       <div className="bottom">
         <div className="title"></div>
@@ -128,18 +148,23 @@ class ExpandCard extends Component {
   constructor(props) {
     super(props);
     this.state = {expanded: props.expanded};
+    this.cardRef = React.createRef();
   }
 
   toggleExpand() {
     this.setState({
       expanded: !this.state.expanded
     });
+    if (!this.state.expanded) {
+      this.props.scroll(this.cardRef.current.offsetTop);
+    }
   }
 
   render() {
     const expanded = this.state.expanded ? "expanded" : "";
     return (
       <CardOne
+        cardRef = {this.cardRef}
         className={expanded}
         onClick={this.toggleExpand.bind(this)}></CardOne>
     );
@@ -159,11 +184,12 @@ class App extends Component {
   render() {
     return (
       <div className="examples">
-        <div className="example expand-card">
-        <Container>
-          {[1, 2, 3, 4].map(key => <ExpandCard key={key} expanded={false}></ExpandCard>)}
+        <Container className="example expand-card">
+          {[1, 2, 3, 4].map(key => <ExpandCard
+                                       key={key}
+                                       expanded={false}
+                                     ></ExpandCard>)}
         </Container>
-        </div>
       </div>
     );
   }
