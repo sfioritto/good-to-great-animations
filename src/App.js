@@ -155,7 +155,10 @@ class ExpandCard extends Component {
     this.setState({
       expanded: !this.state.expanded
     });
-    if (!this.state.expanded) {
+  }
+
+  componentDidUpdate() {
+    if (this.state.expanded) {
       this.props.scroll(this.cardRef.current.offsetTop);
     }
   }
