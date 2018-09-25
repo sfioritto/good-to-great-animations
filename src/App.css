@@ -194,15 +194,17 @@
   .navigation .middle {
     width: 4rem; }
 
-.card-one.expanded .details {
-  display: block;
-  padding: 0 1rem 1rem 1rem; }
-  .card-one.expanded .details p {
-    background-color: #87c3fc;
-    border-radius: 5px;
-    height: 1rem; }
-    .card-one.expanded .details p:first-of-type {
-      margin-top: 0; }
+.card-one.expanded {
+  overflow: hidden; }
+  .card-one.expanded .details {
+    display: block;
+    padding: 0 1rem 1rem 1rem; }
+    .card-one.expanded .details p {
+      background-color: #87c3fc;
+      border-radius: 5px;
+      height: 1rem; }
+      .card-one.expanded .details p:first-of-type {
+        margin-top: 0; }
 
 .expand-card {
   position: relative; }

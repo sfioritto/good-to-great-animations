@@ -269,7 +269,7 @@ $example-width: 14rem;
 }
 
 .card-one.expanded {
-
+  overflow: hidden;
   .details {
     display: block;
     padding: 0 1rem 1rem 1rem;

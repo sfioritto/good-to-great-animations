@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {CSSTransition} from 'react-transition-group';
 import './App.css';
+import anime from 'animejs';
 
 function Nav(props) {
   return (
@@ -17,17 +18,38 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
+    this.scrollTop = 0;
+  }
+
+  componentDidMount() {
+    this.scrollTop = this.containerRef.current.scrollTop;
   }
 
   scroll(scrollTop) {
-    this.containerRef.current.scrollTop = scrollTop;
+    this.scrollTop = this.containerRef.current.scrollTop;
+    anime({
+      targets: this.containerRef.current,
+      scrollTop: scrollTop,
+      duration: 300,
+      easing: 'easeInOutQuart'
+    });
+  }
+
+  reset() {
+    anime({
+      targets: this.containerRef.current,
+      scrollTop: this.scrollTop,
+      duration: 300,
+      easing: 'easeInOutQuart'
+    });
   }
 
   render() {
 
     const children = React.Children.map(
       this.props.children, child => {
-        return React.cloneElement(child, { scroll: this.scroll.bind(this) });
+        return React.cloneElement(child, { scroll: this.scroll.bind(this),
+                                           reset: this.reset.bind(this)});
       });
 
     return (
@@ -149,6 +171,7 @@ class ExpandCard extends Component {
     super(props);
     this.state = {expanded: props.expanded};
     this.cardRef = React.createRef();
+    this.height = 0;
   }
 
   toggleExpand() {
@@ -157,10 +180,40 @@ class ExpandCard extends Component {
     });
   }
 
+  componentDidMount() {
+    this.height =  this.cardRef.current.offsetHeight;
+  }
+
   componentDidUpdate() {
     if (this.state.expanded) {
       this.props.scroll(this.cardRef.current.offsetTop);
+      anime({
+        targets: this.cardRef.current,
+        height: [this.height, this.cardRef.current.scrollHeight],
+        'margin-left': [0, -16],
+        'margin-right': [0, -16],
+        duration: 300,
+        easing: 'easeInOutQuart'
+      });
+
+    } else {
+      this.props.reset();
+      anime({
+        targets: this.cardRef.current,
+        height: [this.cardRef.current.scrollHeight, this.height],
+        'margin-left': [-16, 0],
+        'margin-right': [-16, 0],
+        duration: 300,
+        easing: 'easeInOutQuart'
+      });
     }
+
+
+    // get card height before class applied, animate it from there to
+    // full height (calc full height, maybe the card itself hides overflow, use scrollheight
+
+    // animate margin left and right with negative margin
+    // animate border radius of the top of the card, probs need a ref for that.
   }
 
   render() {
