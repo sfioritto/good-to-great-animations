@@ -45,13 +45,37 @@ class Loader extends Component {
   }
 
   render() {
-    return (
-      <Button
-        value="Load the App!"
-        progress={this.state.progress}
-        load={this.load.bind(this)}
-        loading={this.state.loading}/>
-    );
+    if (this.state.progress === 100) {
+      return this.props.finished();
+    } else {
+      return (
+        <div className="loader">
+          <Button
+            value="Load the App!"
+            progress={this.state.progress}
+            load={this.load.bind(this)}
+            loading={this.state.loading}/>
+        </div>
+      );
+    }
+  }
+}
+
+function SimpleCard(props) {
+  return (
+    <div className="card simple">
+      <div className="top">
+        <div className="title"></div>
+        <div className="sub-title"></div>
+      </div>
+    </div>
+  );
+}
+
+class CardList extends Component {
+
+  render() {
+    return <div className="card-list">{this.props.children}</div>;
   }
 }
 
@@ -59,7 +83,13 @@ class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <Loader />
+        <Loader finished={() => {
+            return (
+              <CardList>
+                {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+              </CardList>
+            );
+            }}/>
       </div>
     );
   }
