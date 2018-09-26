@@ -61,20 +61,20 @@
 
 .card-list {
   position: relative; }
-
-.card {
-  border-radius: 5px;
-  box-shadow: 0 0 5px gainsboro;
-  margin: 0 auto 1rem auto; }
-  .card-appear {
+  .card-list-appear > * {
     opacity: 0;
     position: relative;
     bottom: -100px;
     transition: 100ms all ease-out;
     width: 12rem; }
-  .card-appear-active {
+  .card-list-appear-active > * {
     bottom: 0;
     opacity: 1; }
+
+.card {
+  border-radius: 5px;
+  box-shadow: 0 0 5px gainsboro;
+  margin: 0 auto 1rem auto; }
 
 .card.simple {
   background-color: #4ca5fc;

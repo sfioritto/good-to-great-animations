@@ -80,19 +80,19 @@ class CardList extends Component {
     const children = React.Children.map(
       this.props.children, child => {
         total = total + delay;
-        return (
-          <CSSTransition
-            style={{transitionDelay: total + "ms"}}
-            appear={true}
-            timeout={this.props.children.length * 100}
-            in={true}
-            classNames="card"
-            >
-            {child}
-          </CSSTransition>
-        );
+        return React.cloneElement(child, {style: {transitionDelay: total + "ms"}});
       });
-    return <div className="card-list">{children}</div>;
+    return (
+      <CSSTransition
+        appear={true}
+        timeout={this.props.children.length * 100}
+        in={true}
+        classNames="card-list">
+        <div className="card-list">
+          {children}
+        </div>
+      </CSSTransition>
+    );
   }
 }
 

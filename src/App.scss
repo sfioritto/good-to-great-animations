@@ -97,14 +97,8 @@ $transition-fast: 100ms;
 
 .card-list {
   position: relative;
-}
 
-.card {
-  border-radius: 5px;
-  box-shadow: 0 0 5px $grey;
-  margin: 0 auto 1rem auto;
-
-  &-appear {
+  &-appear > * {
     opacity: 0;
     position: relative;
     bottom: -100px;
@@ -112,11 +106,17 @@ $transition-fast: 100ms;
     width: $example-width - 2rem;
   }
 
-  &-appear-active {
+  &-appear-active > * {
     bottom: 0;
     opacity: 1;
   }
 
+}
+
+.card {
+  border-radius: 5px;
+  box-shadow: 0 0 5px $grey;
+  margin: 0 auto 1rem auto;
 }
 
 .card.simple {
