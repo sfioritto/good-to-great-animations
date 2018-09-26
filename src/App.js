@@ -79,10 +79,6 @@ class CardList extends Component {
     this.state = {loadTransitionFinished: false};
   }
 
-  componentDidMount() {
-    console.log("mounted");
-  }
-
   render() {
     const delay = 60;
     let total = 0;
