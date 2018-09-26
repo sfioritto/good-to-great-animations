@@ -8,7 +8,9 @@ $white: rgb(250, 250, 250);
 
 $example-width: 14rem;
 $example-height: 800px;
-$transition-fast: 200ms;
+$transition-normal: 200ms;
+$transition-fast: 100ms;
+
 *, *::before, *::after {
 }
 
@@ -36,6 +38,8 @@ $transition-fast: 200ms;
 
 .animated-button {
   background-color: $pink;
+  border: none;
+  border-radius: 4px;
   color: white;
   cursor: pointer;
   font-size: 1rem;
@@ -52,7 +56,7 @@ $transition-fast: 200ms;
     opacity: 1;
     position: absolute;
     top: 0;
-    transition: $transition-fast opacity ease-out;
+    transition: $transition-normal opacity ease-out;
     width: 100%;
 
     &:hover {
@@ -92,12 +96,27 @@ $transition-fast: 200ms;
 }
 
 .card-list {
+  position: relative;
 }
 
 .card {
   border-radius: 5px;
   box-shadow: 0 0 5px $grey;
   margin: 0 auto 1rem auto;
+
+  &-appear {
+    opacity: 0;
+    position: relative;
+    bottom: -100px;
+    transition: $transition-fast all ease-out;
+    width: $example-width - 2rem;
+  }
+
+  &-appear-active {
+    bottom: 0;
+    opacity: 1;
+  }
+
 }
 
 .card.simple {

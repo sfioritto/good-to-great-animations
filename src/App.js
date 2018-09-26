@@ -63,7 +63,7 @@ class Loader extends Component {
 
 function SimpleCard(props) {
   return (
-    <div className="card simple">
+    <div className="card simple" {...props}>
       <div className="top">
         <div className="title"></div>
         <div className="sub-title"></div>
@@ -75,7 +75,24 @@ function SimpleCard(props) {
 class CardList extends Component {
 
   render() {
-    return <div className="card-list">{this.props.children}</div>;
+    const delay = 60;
+    let total = 0;
+    const children = React.Children.map(
+      this.props.children, child => {
+        total = total + delay;
+        return (
+          <CSSTransition
+            style={{transitionDelay: total + "ms"}}
+            appear={true}
+            timeout={this.props.children.length * 100}
+            in={true}
+            classNames="card"
+            >
+            {child}
+          </CSSTransition>
+        );
+      });
+    return <div className="card-list">{children}</div>;
   }
 }
 
