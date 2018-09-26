@@ -111,6 +111,9 @@ $transition-fast: 100ms;
     opacity: 1;
   }
 
+  &-enter-done > * {
+    transition-delay: 0ms !important;
+  }
 }
 
 .card {

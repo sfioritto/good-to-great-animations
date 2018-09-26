@@ -70,6 +70,8 @@
   .card-list-appear-active > * {
     bottom: 0;
     opacity: 1; }
+  .card-list-enter-done > * {
+    transition-delay: 0ms !important; }
 
 .card {
   border-radius: 5px;

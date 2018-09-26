@@ -74,6 +74,15 @@ function SimpleCard(props) {
 
 class CardList extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {loadTransitionFinished: false};
+  }
+
+  componentDidMount() {
+    console.log("mounted");
+  }
+
   render() {
     const delay = 60;
     let total = 0;
@@ -82,17 +91,26 @@ class CardList extends Component {
         total = total + delay;
         return React.cloneElement(child, {style: {transitionDelay: total + "ms"}});
       });
-    return (
-      <CSSTransition
-        appear={true}
-        timeout={this.props.children.length * 100}
-        in={true}
-        classNames="card-list">
+    if (this.state.loadTransitionFinished) {
+      return (
         <div className="card-list">
-          {children}
+          {this.props.children}
         </div>
-      </CSSTransition>
-    );
+      );
+    } else {
+      return (
+        <CSSTransition
+          appear={true}
+          timeout={this.props.children.length * 100}
+          in={true}
+          classNames="card-list"
+          onEntered={() => this.setState({loadTransitionFinished: true})}>
+          <div className="card-list">
+            {children}
+          </div>
+        </CSSTransition>
+      );
+    }
   }
 }
 
