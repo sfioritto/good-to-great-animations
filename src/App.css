@@ -208,3 +208,5 @@
 
 .expand-card {
   position: relative; }
+  .expand-card.expanded {
+    overflow: hidden; }

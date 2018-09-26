@@ -13,12 +13,23 @@ function Nav(props) {
   );
 }
 
+class ExpandContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.containerRef = React.createRef();
+    this.scrollTop = 0;
+
+  }
+}
+
 class Container extends Component {
 
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
     this.scrollTop = 0;
+    this.state = {expanded: false};
   }
 
   expand(cardElem, cardHeight) {
@@ -31,6 +42,7 @@ class Container extends Component {
       duration: 300,
       easing: 'easeInOutQuart'
     });
+    this.setState({expanded: true});
   }
 
   collapse(cardElem, cardHeight) {
@@ -43,6 +55,7 @@ class Container extends Component {
       duration: 300,
       easing: 'easeInOutQuart'
     });
+    this.setState({expanded: false});
   }
 
   componentDidMount() {
@@ -75,9 +88,9 @@ class Container extends Component {
         return React.cloneElement(child, { expand: this.expand.bind(this),
                                            collapse: this.collapse.bind(this)});
       });
-
+    const expanded = this.state.expanded ? "expanded" : "";
     return (
-      <div className={this.props.className}
+      <div className={`${this.props.className} ${expanded}`}
            ref={this.containerRef}>
         <Nav/>
         {children}

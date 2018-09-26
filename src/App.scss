@@ -291,4 +291,8 @@ $example-width: 14rem;
 .expand-card {
   // otherwise offsetTop on cards will be relative to the larger example container
   position: relative;
+
+  &.expanded {
+    overflow: hidden;
+  }
 }
