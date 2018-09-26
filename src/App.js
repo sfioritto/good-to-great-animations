@@ -13,7 +13,11 @@ function Button(props) {
       <button
         onClick={props.load}
         className={`animated-button ${loading}`}>
-        {props.loading ? <span style={{width: width}} className="progress-bar"></span> : props.value}
+        {props.loading ? (
+          <span style={{width: width}} className="progress-bar"></span>
+        ) : (
+          <span className="overlay">{props.value}</span>
+        )}
       </button>
     </CSSTransition>
   );
