@@ -29,6 +29,7 @@
   width: 11.2rem; }
   .animated-button .overlay {
     align-items: center;
+    border-radius: 5px;
     display: flex;
     height: 100%;
     justify-content: center;
@@ -44,6 +45,7 @@
   .animated-button .progress-bar {
     display: block;
     background: #0f0f0f;
+    border-radius: 5px;
     height: 100%;
     opacity: .5; }
   .animated-button:focus {
