@@ -144,6 +144,16 @@ $transition-fast: 100ms;
 }
 
 .card.complex {
+
+  &.expanded {
+    .top {
+      height: 8rem;
+    }
+    .bottom {
+      display: block;
+    }
+  }
+
   .top {
     background-color: $blue;
     height: 4rem;
@@ -152,6 +162,16 @@ $transition-fast: 100ms;
 
   .middle {
     padding: 1rem;
+  }
+
+  .bottom {
+    display: none;
+    padding: 1rem;
+    p {
+      background-color: $blue;
+      border-radius: 5px;
+      height: 1rem;
+    }
   }
 
   .title {

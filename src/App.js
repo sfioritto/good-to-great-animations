@@ -79,21 +79,44 @@ class ComplexCard extends Component {
   constructor(props) {
     super(props);
     this.cardRef = React.createRef();
+    this.state = {
+      expanded: false
+    };
   }
 
-  expand() {
-    EE.emit("card-expanded", this.cardRef.current);
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.expanded !== prevState.expanded) {
+      if (this.state.expanded) {
+        EE.emit("card-expanded", this.cardRef.current);
+      } else {
+        EE.emit("card-collapsed", this.cardRef.current);
+      }
+    }
+  }
+
+  toggle() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
   }
 
   render() {
+    const expanded = this.state.expanded ? "expanded" : "";
     return (
-      <div className="card complex" ref={this.cardRef}>
-        <div className="top" onClick={this.expand.bind(this)}>
+      <div className={`card complex ${expanded}`} ref={this.cardRef}>
+        <div className="top" onClick={this.toggle.bind(this)}>
         </div>
         <div className="middle">
           <div className="title">
           </div>
           <div className="sub-title"/>
+        </div>
+        <div className="bottom">
+          <p></p>
+          <p></p>
+          <p></p>
         </div>
       </div>
     );
