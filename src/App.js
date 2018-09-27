@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {CSSTransition} from 'react-transition-group';
 import './App.css';
 import anime from 'animejs';
+import EventEmitter from 'eventemitter3';
 
+const EE = new EventEmitter();
 
 function Button(props) {
   const loading = props.loading ? "loading" : "";
@@ -72,18 +74,30 @@ function SimpleCard(props) {
   );
 }
 
-function ComplexCard(props) {
-  return (
-    <div className="card complex">
-      <div className="top">
-      </div>
-      <div className="middle">
-        <div className="title">
+class ComplexCard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.cardRef = React.createRef();
+  }
+
+  expand() {
+    EE.emit("card-expanded", this.cardRef.current);
+  }
+
+  render() {
+    return (
+      <div className="card complex" ref={this.cardRef}>
+        <div className="top" onClick={this.expand.bind(this)}>
         </div>
-        <div className="sub-title"/>
+        <div className="middle">
+          <div className="title">
+          </div>
+          <div className="sub-title"/>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 class CardList extends Component {
@@ -196,6 +210,11 @@ class TabbedContainer extends Component {
 
 
 class App extends Component {
+
+  componentDidMount() {
+    EE.on('card-expanded', (element) => console.log(element));
+  }
+
   render() {
     return (
       <div className="animated-app">
@@ -212,7 +231,7 @@ class App extends Component {
               right = {() => {
                 return (
                   <CardList>
-                    {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
+                    {[8, 9, 10, 11, 12, 13, 14, 15, 16].map(key => <ComplexCard key={key}/>)}
                   </CardList>
                 );
               }}>
