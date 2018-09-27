@@ -12,6 +12,7 @@ $transition-normal: 200ms;
 $transition-fast: 100ms;
 
 *, *::before, *::after {
+  box-sizing: border-box;
 }
 
 #root {
