@@ -108,9 +108,43 @@ class CardList extends Component {
 
 class TabbedContainer extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      left: true,
+      right: false
+    };
+  }
+
+  leftTab() {
+    this.setState({
+      left: true,
+      right: false
+    });
+  }
+
+  rightTab() {
+    this.setState({
+      left: false,
+      right: true
+    });
+  }
+
   render() {
     return (
       <div className="tabbed-container">
+        <div className="tabs">
+          <div className={"tab" + (this.state.left ? " selected" : "")}>
+            <div className="tab-button"
+                 onClick={this.leftTab.bind(this)}>
+            </div>
+          </div>
+          <div className={"tab" + (this.state.right ? " selected" : "")}>
+            <div className="tab-button"
+                 onClick={this.rightTab.bind(this)}>
+            </div>
+          </div>
+        </div>
         {this.props.children}
       </div>
     );

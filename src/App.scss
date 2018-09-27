@@ -141,3 +141,33 @@ $transition-fast: 100ms;
     width: 33%;
   }
 }
+
+.tabbed-container {
+  .tabs {
+    display: flex;
+    padding: 1rem 0;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    position: relative;
+    width: 50%;
+
+    &.selected::after {
+      border-bottom: 2px solid $blue;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .tab-button {
+    background-color: $blue;
+    border-radius: 5px;
+    height: 2rem;
+    width: 80%;
+  }
+}
