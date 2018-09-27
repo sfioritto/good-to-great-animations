@@ -105,6 +105,8 @@
   padding-bottom: 1rem;
   position: relative;
   width: 50%; }
+  .tabbed-container .tab.selected .tab-button {
+    background-color: #4ca5fc; }
   .tabbed-container .tab.selected::after {
     border-bottom: 2px solid #4ca5fc;
     bottom: 0;
@@ -113,7 +115,11 @@
     width: 100%; }
 
 .tabbed-container .tab-button {
-  background-color: #4ca5fc;
+  background-color: gainsboro;
   border-radius: 5px;
-  height: 2rem;
+  height: 1.5rem;
+  transition: 200ms background-color ease-out;
   width: 80%; }
+  .tabbed-container .tab-button:hover {
+    background-color: #93ccfc;
+    cursor: pointer; }

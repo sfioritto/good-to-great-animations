@@ -155,6 +155,10 @@ $transition-fast: 100ms;
     position: relative;
     width: 50%;
 
+    &.selected .tab-button {
+      background-color: $blue;
+    }
+
     &.selected::after {
       border-bottom: 2px solid $blue;
       bottom: 0;
@@ -165,9 +169,15 @@ $transition-fast: 100ms;
   }
 
   .tab-button {
-    background-color: $blue;
+    background-color: $grey;
     border-radius: 5px;
-    height: 2rem;
+    height: 1.5rem;
+    transition: 200ms background-color ease-out;
     width: 80%;
+
+    &:hover {
+      background-color: $lighter-blue;
+      cursor: pointer;
+    }
   }
 }
