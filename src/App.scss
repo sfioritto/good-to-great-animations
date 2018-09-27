@@ -142,6 +142,33 @@ $transition-fast: 100ms;
   }
 }
 
+.card.complex {
+  .top {
+    background-color: $blue;
+    height: 4rem;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .middle {
+    padding: 1rem;
+  }
+
+  .title {
+    background-color: $blue;
+    border-radius: 5px;
+    height: 1.5rem;
+    width: 66%;
+  }
+
+  .sub-title {
+    background-color: $lighter-blue;
+    border-radius: 5px;
+    height: 1.5rem;
+    margin-top: 1rem;
+    width: 33%
+  }
+}
+
 .tabbed-container {
   .tabs {
     display: flex;

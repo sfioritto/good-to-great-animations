@@ -72,6 +72,20 @@ function SimpleCard(props) {
   );
 }
 
+function ComplexCard(props) {
+  return (
+    <div className="card complex">
+      <div className="top">
+      </div>
+      <div className="middle">
+        <div className="title">
+        </div>
+        <div className="sub-title"/>
+      </div>
+    </div>
+  );
+}
+
 class CardList extends Component {
 
   constructor(props) {
@@ -155,7 +169,7 @@ class TabbedContainer extends Component {
             </div>
           </CSSTransition>
         </div>
-        {this.props.children}
+        {this.props.render(this.state.left, this.state.right)}
       </div>
     );
   }
@@ -166,13 +180,21 @@ class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <TabbedContainer>
-          <CardList>
-            {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-          </CardList>
-          <CardList>
-            {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-          </CardList>
+        <TabbedContainer render={(left, right) => {
+            if (left) {
+              return (
+                <CardList>
+                  {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+                </CardList>
+              );
+            } else {
+              return (
+                <CardList>
+                  {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
+                </CardList>
+              );
+            }
+          }}>
         </TabbedContainer>
       </div>
     );
