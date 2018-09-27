@@ -174,7 +174,7 @@
     transition: 200ms transform ease-in-out; }
   .tabbed-container .left-list-enter-active {
     transform: translateX(0); }
-  .tabbed-container .left-list-enter-done.selected {
+  .tabbed-container .left-list-enter-done, .tabbed-container .left-list.selected {
     transform: translateX(0); }
 
 .tabbed-container .right-list {
@@ -183,5 +183,5 @@
     transition: 200ms transform ease-in-out; }
   .tabbed-container .right-list-enter-active {
     transform: translateX(0); }
-  .tabbed-container .right-list-enter-done.selected {
+  .tabbed-container .right-list-enter-done, .tabbed-container .right-list.selected {
     transform: translateX(0); }

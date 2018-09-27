@@ -199,22 +199,26 @@ class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <TabbedContainer
-          left={() => {
+        <Loader finished={() => {
             return (
-              <CardList>
-                {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-              </CardList>
+              <TabbedContainer
+                left={() => {
+                  return (
+                    <CardList>
+                      {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+                    </CardList>
+                  );
+                }}
+              right = {() => {
+                return (
+                  <CardList>
+                    {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
+                  </CardList>
+                );
+              }}>
+                </TabbedContainer>
             );
-          }}
-      right = {() => {
-            return (
-              <CardList>
-                {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
-              </CardList>
-            );
-          }}>
-        </TabbedContainer>
+          }}/>
       </div>
     );
   }

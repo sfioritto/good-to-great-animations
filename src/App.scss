@@ -250,7 +250,7 @@ $transition-fast: 100ms;
     &-enter-active {
       transform: translateX(0);
     }
-    &-enter-done.selected {
+    &-enter-done, &.selected {
       transform: translateX(0);
     }
   }
@@ -264,7 +264,7 @@ $transition-fast: 100ms;
     &-enter-active {
       transform: translateX(0);
     }
-    &-enter-done.selected {
+    &-enter-done, &.selected {
       transform: translateX(0);
     }
   }
