@@ -106,13 +106,30 @@ class CardList extends Component {
   }
 }
 
+class TabbedContainer extends Component {
+
+  render() {
+    return (
+      <div className="tabbed-container">
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+
 class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <CardList>
-          {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-        </CardList>
+        <TabbedContainer>
+          <CardList>
+            {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+          </CardList>
+          <CardList>
+            {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+          </CardList>
+        </TabbedContainer>
       </div>
     );
   }
