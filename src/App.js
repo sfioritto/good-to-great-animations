@@ -94,7 +94,7 @@ class CardList extends Component {
     return (
       <CSSTransition
         appear={true}
-        timeout={this.props.children.length * 100}
+        timeout={this.props.children.length * delay}
         in={true}
         classNames="card-list"
         onEntered={() => this.setState({loadTransitionFinished: true})}>
@@ -110,13 +110,9 @@ class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <Loader finished={() => {
-            return (
-              <CardList>
-                {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-              </CardList>
-            );
-            }}/>
+        <CardList>
+          {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+        </CardList>
       </div>
     );
   }

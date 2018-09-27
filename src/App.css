@@ -65,15 +65,12 @@
   position: relative; }
   .card-list-appear > * {
     opacity: 0;
-    position: relative;
-    bottom: -100px;
+    transform: translateY(80px);
     transition: 100ms all ease-out;
     width: 12rem; }
   .card-list-appear-active > * {
-    bottom: 0;
+    transform: translateY(0);
     opacity: 1; }
-  .card-list-enter-done > * {
-    transition-delay: 0ms !important; }
 
 .card {
   border-radius: 5px;

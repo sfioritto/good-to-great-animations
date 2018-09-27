@@ -102,19 +102,14 @@ $transition-fast: 100ms;
 
   &-appear > * {
     opacity: 0;
-    position: relative;
-    bottom: -100px;
+    transform: translateY(80px);
     transition: $transition-fast all ease-out;
     width: $example-width - 2rem;
   }
 
   &-appear-active > * {
-    bottom: 0;
+    transform: translateY(0);
     opacity: 1;
-  }
-
-  &-enter-done > * {
-    transition-delay: 0ms !important;
   }
 }
 
