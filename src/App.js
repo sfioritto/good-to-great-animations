@@ -169,7 +169,26 @@ class TabbedContainer extends Component {
             </div>
           </CSSTransition>
         </div>
-        {this.props.render(this.state.left, this.state.right)}
+        <div className="tabbed-lists">
+          <CSSTransition
+            in={this.state.left}
+            timeout={200}
+            classNames="left-list"
+            >
+            <div className={"left-list" + (this.state.left ? " selected" : "")}>
+              {this.props.left()}
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={this.state.right}
+            timeout={200}
+            classNames="right-list"
+            >
+            <div className={"right-list" + (this.state.right ? " selected" : "")}>
+              {this.props.right()}
+            </div>
+          </CSSTransition>
+        </div>
       </div>
     );
   }
@@ -180,20 +199,20 @@ class App extends Component {
   render() {
     return (
       <div className="animated-app">
-        <TabbedContainer render={(left, right) => {
-            if (left) {
-              return (
-                <CardList>
-                  {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
-                </CardList>
-              );
-            } else {
-              return (
-                <CardList>
-                  {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
-                </CardList>
-              );
-            }
+        <TabbedContainer
+          left={() => {
+            return (
+              <CardList>
+                {[1, 2, 3, 4, 5, 6, 7].map(key => <SimpleCard key={key}/>)}
+              </CardList>
+            );
+          }}
+      right = {() => {
+            return (
+              <CardList>
+                {[1, 2, 3, 4, 5, 6, 7].map(key => <ComplexCard key={key}/>)}
+              </CardList>
+            );
           }}>
         </TabbedContainer>
       </div>

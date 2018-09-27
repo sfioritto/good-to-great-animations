@@ -158,3 +158,30 @@
 
 .tabbed-container .tab-right-enter-active::after {
   transform: translateX(0); }
+
+.tabbed-container .tabbed-lists {
+  position: relative; }
+
+.tabbed-container .left-list,
+.tabbed-container .right-list {
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+.tabbed-container .left-list {
+  transform: translateX(-15rem); }
+  .tabbed-container .left-list-enter, .tabbed-container .left-list-exit {
+    transition: 200ms transform ease-in-out; }
+  .tabbed-container .left-list-enter-active {
+    transform: translateX(0); }
+  .tabbed-container .left-list-enter-done.selected {
+    transform: translateX(0); }
+
+.tabbed-container .right-list {
+  transform: translateX(15rem); }
+  .tabbed-container .right-list-enter, .tabbed-container .right-list-exit {
+    transition: 200ms transform ease-in-out; }
+  .tabbed-container .right-list-enter-active {
+    transform: translateX(0); }
+  .tabbed-container .right-list-enter-done.selected {
+    transform: translateX(0); }

@@ -229,4 +229,43 @@ $transition-fast: 100ms;
       transform: translateX(0);
     }
   }
+
+  .tabbed-lists {
+    position: relative;
+  }
+
+  .left-list,
+  .right-list {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .left-list {
+    transform: translateX(-$example-width - 1rem);
+    &-enter,
+    &-exit {
+      transition: 200ms transform ease-in-out;
+    }
+    &-enter-active {
+      transform: translateX(0);
+    }
+    &-enter-done.selected {
+      transform: translateX(0);
+    }
+  }
+
+  .right-list {
+    transform: translateX($example-width + 1rem);
+    &-enter,
+    &-exit{
+      transition: 200ms transform ease-in-out;
+    }
+    &-enter-active {
+      transform: translateX(0);
+    }
+    &-enter-done.selected {
+      transform: translateX(0);
+    }
+  }
 }
