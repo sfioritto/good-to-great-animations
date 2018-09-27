@@ -134,16 +134,26 @@ class TabbedContainer extends Component {
     return (
       <div className="tabbed-container">
         <div className="tabs">
-          <div className={"tab" + (this.state.left ? " selected" : "")}>
-            <div className="tab-button"
-                 onClick={this.leftTab.bind(this)}>
+          <CSSTransition
+            in={this.state.left}
+            timeout={200}
+            classNames="tab-left">
+            <div className={"tab tab-left" + (this.state.left ? " selected" : "")}>
+              <div className="tab-button"
+                   onClick={this.leftTab.bind(this)}>
+              </div>
             </div>
-          </div>
-          <div className={"tab" + (this.state.right ? " selected" : "")}>
-            <div className="tab-button"
-                 onClick={this.rightTab.bind(this)}>
+          </CSSTransition>
+          <CSSTransition
+            in={this.state.right}
+            timeout={200}
+            classNames="tab-right">
+            <div className={"tab tab-right" + (this.state.right ? " selected" : "")}>
+              <div className="tab-button"
+                   onClick={this.rightTab.bind(this)}>
+              </div>
             </div>
-          </div>
+          </CSSTransition>
         </div>
         {this.props.children}
       </div>

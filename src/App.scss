@@ -180,4 +180,26 @@ $transition-fast: 100ms;
       cursor: pointer;
     }
   }
+
+  .tab-left {
+    &-enter::after {
+      transition: 200ms transform ease-in-out;
+      transform: translateX($example-width / 2);
+    }
+
+    &-enter-active::after {
+      transform: translateX(0);
+    }
+  }
+
+  .tab-right {
+    &-enter::after {
+      transition: 200ms transform ease-in-out;
+      transform: translateX(-($example-width / 2));
+    }
+
+    &-enter-active::after {
+      transform: translateX(0);
+    }
+  }
 }

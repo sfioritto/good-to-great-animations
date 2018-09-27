@@ -123,3 +123,17 @@
   .tabbed-container .tab-button:hover {
     background-color: #93ccfc;
     cursor: pointer; }
+
+.tabbed-container .tab-left-enter::after {
+  transition: 200ms transform ease-in-out;
+  transform: translateX(7rem); }
+
+.tabbed-container .tab-left-enter-active::after {
+  transform: translateX(0); }
+
+.tabbed-container .tab-right-enter::after {
+  transition: 200ms transform ease-in-out;
+  transform: translateX(-7rem); }
+
+.tabbed-container .tab-right-enter-active::after {
+  transform: translateX(0); }
