@@ -85,28 +85,24 @@ class CardList extends Component {
     const children = React.Children.map(
       this.props.children, child => {
         total = total + delay;
-        return React.cloneElement(child, {style: {transitionDelay: total + "ms"}});
+        if (this.state.loadTransitionFinished) {
+          return child;
+        } else {
+          return React.cloneElement(child, {style: {transitionDelay: total + "ms"}});
+        }
       });
-    if (this.state.loadTransitionFinished) {
-      return (
+    return (
+      <CSSTransition
+        appear={true}
+        timeout={this.props.children.length * 100}
+        in={true}
+        classNames="card-list"
+        onEntered={() => this.setState({loadTransitionFinished: true})}>
         <div className="card-list">
-          {this.props.children}
+          {children}
         </div>
-      );
-    } else {
-      return (
-        <CSSTransition
-          appear={true}
-          timeout={this.props.children.length * 100}
-          in={true}
-          classNames="card-list"
-          onEntered={() => this.setState({loadTransitionFinished: true})}>
-          <div className="card-list">
-            {children}
-          </div>
-        </CSSTransition>
-      );
-    }
+      </CSSTransition>
+    );
   }
 }
 
