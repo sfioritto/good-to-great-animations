@@ -98,40 +98,37 @@
     margin: 1rem 0;
     width: 33%; }
 
-.card.complex.expanded .top {
-  height: 8rem; }
-
-.card.complex.expanded .bottom {
-  display: block; }
-
-.card.complex .top {
-  background-color: #4ca5fc;
-  height: 4rem;
-  border-radius: 5px 5px 0 0; }
-
-.card.complex .middle {
-  padding: 1rem; }
-
-.card.complex .bottom {
-  display: none;
-  padding: 1rem; }
-  .card.complex .bottom p {
+.card.complex {
+  overflow: hidden; }
+  .card.complex.expanded .top {
+    height: 8rem; }
+  .card.complex.expanded .bottom {
+    display: block; }
+  .card.complex .top {
+    background-color: #4ca5fc;
+    cursor: pointer;
+    height: 4rem;
+    border-radius: 5px 5px 0 0; }
+  .card.complex .middle {
+    padding: 1rem; }
+  .card.complex .bottom {
+    display: none;
+    padding: 1rem; }
+    .card.complex .bottom p {
+      background-color: #4ca5fc;
+      border-radius: 5px;
+      height: 1rem; }
+  .card.complex .title {
     background-color: #4ca5fc;
     border-radius: 5px;
-    height: 1rem; }
-
-.card.complex .title {
-  background-color: #4ca5fc;
-  border-radius: 5px;
-  height: 1.5rem;
-  width: 66%; }
-
-.card.complex .sub-title {
-  background-color: #93ccfc;
-  border-radius: 5px;
-  height: 1.5rem;
-  margin-top: 1rem;
-  width: 33%; }
+    height: 1.5rem;
+    width: 66%; }
+  .card.complex .sub-title {
+    background-color: #93ccfc;
+    border-radius: 5px;
+    height: 1.5rem;
+    margin-top: 1rem;
+    width: 33%; }
 
 .tabbed-container .tabs {
   display: flex;

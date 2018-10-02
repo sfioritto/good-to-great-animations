@@ -144,7 +144,7 @@ $transition-fast: 100ms;
 }
 
 .card.complex {
-
+  overflow: hidden;
   &.expanded {
     .top {
       height: 8rem;
@@ -156,6 +156,7 @@ $transition-fast: 100ms;
 
   .top {
     background-color: $blue;
+    cursor: pointer;
     height: 4rem;
     border-radius: 5px 5px 0 0;
   }

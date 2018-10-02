@@ -79,19 +79,45 @@ class ComplexCard extends Component {
   constructor(props) {
     super(props);
     this.cardRef = React.createRef();
+    this.initialHeight = 0;
+    this.expandedHeight = 0;
     this.state = {
       expanded: false
     };
   }
 
-
+  componentDidMount() {
+    this.initialHeight = this.cardRef.current.offsetHeight;
+  }
 
   componentDidUpdate(prevProps, prevState) {
+    const cardElem = this.cardRef.current;
+
     if (this.state.expanded !== prevState.expanded) {
       if (this.state.expanded) {
+        if (!this.expandedHeight) {
+          this.expandedHeight = cardElem.offsetHeight;
+        }
         EE.emit("card-expanded", this.cardRef.current);
+        anime({
+          targets: cardElem,
+          height: [this.initialHeight, this.expandedHeight],
+          'margin-left': [0, -16],
+          'margin-right': [0, -16],
+          duration: 200,
+          easing: 'easeInOutQuart'
+        });
       } else {
         EE.emit("card-collapsed", this.cardRef.current);
+        anime({
+          targets: cardElem,
+          height: [this.expandedHeight, this.initialHeight],
+          'margin-left': [0, -16],
+          'margin-right': [0, -16],
+          duration: 200,
+          easing: 'easeInOutQuart'
+        });
+
       }
     }
   }
